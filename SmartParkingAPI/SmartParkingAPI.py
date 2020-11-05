@@ -16,21 +16,17 @@ from gpiozero import LED
 import time
 import threading
 import argparse
-pir1=MotionSensor(17)
-pir2=MotionSensor(27)
-buzz=LED(4)
+pir1=MotionSensor(17)# set the first motion sensor to pin 17
+pir2=MotionSensor(27)# set the second motion sensor to pin 27
+buzz=LED(4)#set the buzzer to zero
 
-# initialize the output frame and a lock used to ensure thread-safe
-# exchanges of the output frames (useful for multiple browsers/tabs
-# are viewing tthe stream)
+
 
 
 # initialize a flask object
 app = Flask(__name__)
 
-# initialize the video stream and allow the camera sensor to
-# warmup
-#vs = VideoStream(usePiCamera=1).start()
+
 
 time.sleep(2.0);
 lock = threading.Lock()
@@ -39,13 +35,8 @@ motion= carmotion.CarSensor()
 cam= cameraSensor.CarCamera(lock,vs)
 message= "car not parked"
 
-@app.route("/")
-def index():
-	# return the rendered template
-	message, sensed_time= motion.Motion(pir1,pir2,buzz)
-	return render_template("sensor.html",sensed_time=sensed_time)
 
-
+#this is the first route which returns both motion detection and offers camera surveilance
 @app.route('/ParkingAPI',methods=['GET'])
 def full_parking():
 	message= motion.motion_detect(pir1,pir2,buzz)
@@ -54,7 +45,7 @@ def full_parking():
 	else:
 		return render_template("sensorFalse.html")
 
-
+#here is the second route which offers only motion detection to users
 @app.route('/motionAPI',methods=['GET'])
 def motion_parking():
 	message= motion.motion_detect(pir1,pir2,buzz)
@@ -62,11 +53,11 @@ def motion_parking():
 		return render_template("motionTrue.html")
 	else:
 		return render_template("motionFalse.html")
-
+#here is the third option which just offers camera surveilance to users
 @app.route('/cameraAPI',methods=['GET'])
 def camera_parking():
     return render_template("camera.html")
-
+#this route generates the video stream as required
 @app.route("/video_feed")
 def video_feed():
 	# return the response generated along with the specific media
@@ -78,12 +69,15 @@ def video_feed():
 	
 
 if __name__ == '__main__':
-	t = threading.Thread(target=cam.setup_frames,)
+
+	t = threading.Thread(target=cam.setup_frames,)#initiates the threading for the camera
 	t.daemon = True
-	t.start()
+	t.start()#starts the thread
 	ap = argparse.ArgumentParser()
+    #gives users the ability to add arguments  for differnt ports and for a differnt IP addresss on their respective raspberry pi
 	ap.add_argument("-i", "--ip", type=str, required=True,
 		help="ip address of the device")
+    
 	ap.add_argument("-o", "--port", type=int, required=True,
 		help="ephemeral port number of the server (1024 to 65535)")
 	args = vars(ap.parse_args())

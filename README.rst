@@ -26,7 +26,9 @@ This is a smart parking api which gives users the ability to find where their ca
 Features
 --------
 
-* TODO
+* real time montitoring of a parking spot's vacancy 
+* real time video surveilance of a parking spot where your vehicle is parked
+
 
 Credits
 -------

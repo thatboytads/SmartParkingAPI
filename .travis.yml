@@ -22,7 +22,7 @@ deploy:
   distributions: sdist bdist_wheel
   user: MZNTAD001
   password:
-    secure: PLEASE_REPLACE_ME
+    secure: vObt/lGwsNF0O9JVZUsE0x0tPU/NNLLIhGveu/lmAPd97uD+y0SUBAqkS51YttvkURWH/Tv6kFNyNJ0sca4BRlpo6dosWtFq7kWfyqlQQM4mfvBfmqOKilAMgU3G2Idq2gQXxELd+Bjw8a2tqUrB2k/5GAeiOeInEoJpOttkvX58j0+zNOz9e6p9Qyh7Pb0l+2C9DTAPVQRhcxfHbbavN7E8ysjSwW8xaLYOmL2kBVA7PFY4c2JbO1e9UR0JKPYpoQUZHPrRkS4vVPXOI3wDp3KmnqURglyMK1rpEZGM5h1XQlxqNOXfh6SCLWfAIpDbbnJK2lG1V1aIeYXFRUtGUQFPfW5tf/enbFfb7gWdmOvmioUaeTgUDyW4OTPZaPhftxyBbMOfYwAUg+UHRTAkXyFSChT1Y234M3vLBd8SUiynJuHdI3Ts+PzURyZapClDjfCtEX7MueXmEcNWnKnNSLhdYlearvWg+FEjKZBkMop+b7gHKWI78fFe2NKV9NPzkip1dimDInAfE3ikv7yC9+jsuAItaLkniLYQ64Pv6AraLsZRlSRniXka0UmAdCbNcxQzM4o2m/n5ZQnVZo+KlV8lVGp3TwzF2pEWb5/xnQQGiEt2PPs8yPouOOy/hYi2mhdwcLAjL4BEoHG93X28K3shD3EO6ZJEd+ykenAP1a8=
   on:
     tags: true
     repo: thatboytads/SmartParkingAPI
